@@ -1,3 +1,5 @@
+import { Camera } from '@ionic-native/camera/ngx';
+import { PipesModule } from './pipes/pipes.module';
 import { ComponentsModule } from './components/components.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,11 +19,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [BrowserModule, IonicModule.forRoot(),
      AppRoutingModule,
      ComponentsModule,
-     HttpClientModule
+     HttpClientModule,
+     PipesModule
     ],
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

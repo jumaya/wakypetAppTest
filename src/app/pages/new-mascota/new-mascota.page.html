@@ -1,0 +1,68 @@
+<app-header titulo="Nueva mascota"> </app-header>
+<ion-content>
+
+    <ion-list>
+        <form [formGroup]="MascotaForm" (ngSubmit)="onSubmit()">
+
+            <ion-item>
+                <ion-label position="floating">
+                    <ion-text color="dark">
+                        <h3>Nombre de tu mascota</h3>
+                    </ion-text>
+                </ion-label>
+                <ion-input required formControlName="nombre" type="text"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.nombre">
+                <ion-item *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ion-item>
+            </div>
+
+            <ion-item>
+                <ion-label> Raza </ion-label>
+                <ion-select formControlName="raza" interface="action-sheet" [interfaceOptions]="customActionSheetOptions" placeholder="Seleccionar la raza">
+                    <ion-select-option [value]="item.raza_id" *ngFor="let item of razas | async">
+                        {{item.nombre}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item><br>
+
+            <ion-item>
+                <ion-label> Fecha de nacimiento </ion-label>
+                <ion-datetime required formControlName="fecha_nacimiento" placeholder="fecha de nacimiento" display-format="DD MMMM YYYY">
+                </ion-datetime>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.fecha_nacimiento">
+                <ion-item *ngIf="fecha_nacimiento.hasError(error.type) && (fecha_nacimiento.dirty || fecha_nacimiento.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ion-item>
+            </div><br>
+
+            <ion-row class="top-20">
+                <ion-col>
+                    <ion-button expand="full" color="tertiary" (click)="getGalery()">
+                        <ion-icon slot="start" name="image-outline"></ion-icon>
+                        Ver galería
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button expand="full " color="tertiary " (click)="takePicture()">
+                        <ion-icon slot="start" name="camera-outline"></ion-icon>
+                        Tomar foto
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row class="top-20">
+                <ion-col>
+                    <img *ngIf="image" style="position: static;" height="100" width="100" [src]="image">
+                </ion-col>
+            </ion-row><br>
+
+            <ion-button #btnGuardar expand="block" block color="primary" type="submit" [disabled]="MascotaForm.invalid">
+                Guardar
+            </ion-button>
+
+        </form>
+    </ion-list>
+
+</ion-content>

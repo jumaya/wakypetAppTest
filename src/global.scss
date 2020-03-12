@@ -33,6 +33,10 @@
     color: red !important;
 }
 
+.error-message {
+    color: var(--ion-color-danger);
+}
+
 .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;

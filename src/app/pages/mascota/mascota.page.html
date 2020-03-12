@@ -1,0 +1,35 @@
+<app-header titulo="Mascota"></app-header>
+
+<ion-content>
+
+    <ion-list>
+
+        <ion-item *ngFor="let item of result">
+            <ion-avatar slot="start">
+                <img src="data:image/jpg;base64,{{item.foto}}">
+            </ion-avatar>
+            <ion-label>
+                <h3>{{item.nombre}}</h3>
+                <p> {{item.raza}} </p>
+                <p> {{item.fecha_nacimiento | date}} </p>
+                <p> {{item.edad}} </p>
+            </ion-label>
+        </ion-item>
+
+        <ion-card *ngIf="result.length == 0">
+            <ion-card-content>
+                <ion-text color="tertiary">
+                    <h2>Aún no ha registrado una mascota</h2>
+                </ion-text>
+            </ion-card-content>
+        </ion-card>
+
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" routerLink="/new-mascota">
+        <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

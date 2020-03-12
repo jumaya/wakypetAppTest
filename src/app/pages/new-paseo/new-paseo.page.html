@@ -1,0 +1,76 @@
+<app-header titulo="Nuevo paseo"></app-header>
+
+<ion-content>
+
+    <ion-list>
+        <form [formGroup]="ProgPaseoForm" (ngSubmit)="onSubmit()">
+
+            <ion-item>
+                <ion-label> Mascota </ion-label>
+                <ion-select formControlName="mascota" interface="action-sheet" [interfaceOptions]="customActionSheetOptions" placeholder="Seleccionar la raza">
+                    <ion-select-option [value]="item.mascota_id+' '+item.nombre" *ngFor="let item of mascotas | async">
+                        {{item.nombre}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.mascota">
+                <ion-item *ngIf="mascota.hasError(error.type) && (mascota.dirty || mascota.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ion-item>
+            </div><br>
+
+            <ion-item>
+                <ion-label> Plan </ion-label>
+                <ion-select formControlName="plan" interface="action-sheet" [interfaceOptions]="customActionSheetOptions" placeholder="Seleccionar la raza">
+                    <ion-select-option [value]="item.plan_id+' '+item.descripcion" *ngFor="let item of planes | async">
+                        {{item.descripcion + ' - $ ' + item.valor }}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.plan">
+                <ion-item *ngIf="plan.hasError(error.type) && (plan.dirty || plan.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ion-item>
+            </div><br>
+
+            <ion-item>
+                <ion-label> Fecha de paseo </ion-label>
+                <ion-datetime required formControlName="fecha" placeholder="Fecha" display-format="DD MMMM YYYY">
+                </ion-datetime>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.fecha">
+                <ion-item *ngIf="fecha.hasError(error.type) && (fecha.dirty || fecha.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ion-item>
+            </div>
+
+            <ion-item>
+                <ion-label> Hora Inicio </ion-label>
+                <ion-datetime required formControlName="inicio" placeholder="inicio" display-format="HH:mm">
+                </ion-datetime>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.inicio">
+                <ion-item *ngIf="inicio.hasError(error.type) && (inicio.dirty || inicio.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ion-item>
+            </div>
+
+            <ion-item>
+                <ion-label> Hora Fin </ion-label>
+                <ion-datetime required formControlName="fin" placeholder="fin" display-format="HH:mm">
+                </ion-datetime>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.fin ">
+                <ion-item *ngIf="fin.hasError(error.type) && (fin.dirty || fin.touched) ">
+                    <small class="error-message ">{{error.message}}</small>
+                </ion-item>
+            </div><br>
+
+            <ion-button #btnProg expand="block " block color="primary " type="submit " [disabled]="ProgPaseoForm.invalid ">
+                Guardar
+            </ion-button>
+
+        </form>
+    </ion-list>
+
+</ion-content>

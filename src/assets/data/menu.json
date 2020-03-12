@@ -1,11 +1,11 @@
 [{
         "icon": "people-outline",
-        "name": "Usuario",
-        "redirectTo": "/client"
+        "name": "Tu mascota",
+        "redirectTo": "/cliente"
     },
     {
         "icon": "walk-outline",
         "name": "Programar paseo",
-        "redirectTo": "/paseo"
+        "redirectTo": "/cliente"
     }
 ]

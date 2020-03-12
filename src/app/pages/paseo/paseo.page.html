@@ -1,0 +1,35 @@
+<app-header titulo="Paseos programados"></app-header>
+
+<ion-content>
+
+    <ion-list>
+
+        <ion-item *ngFor="let item of paseo | async">
+            <ion-label>
+                <h3> {{item.title}} </h3>
+                <p> Hora inicio: {{item.start | date:'shortTime'}} </p>
+                <p> Hora fin: {{item.end | date:'shortTime' }} </p>
+            </ion-label>
+            <ion-label slot="end">
+                {{item.start | date:'longDate'}}
+            </ion-label>
+        </ion-item>
+
+    </ion-list>
+
+    <ion-card *ngIf="(paseo | async)?.length == 0">
+        <ion-card-content>
+            <ion-text color="tertiary">
+                <h2>No ha registrado paseos</h2>
+            </ion-text>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" routerLink="/new-paseo">
+        <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+
+</ion-content>
