@@ -1,0 +1,11 @@
+[{
+        "icon": "people-outline",
+        "name": "Usuario",
+        "redirectTo": "/client"
+    },
+    {
+        "icon": "walk-outline",
+        "name": "Programar paseo",
+        "redirectTo": "/paseo"
+    }
+]
